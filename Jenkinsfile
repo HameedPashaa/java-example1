@@ -1,6 +1,6 @@
 
 pipeline {
-    agent {label 'slave1'}
+    agent {label 'slave-1'}
     stages {
         stage('GIT Checkout') {
             steps{
