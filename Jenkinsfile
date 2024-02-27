@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('GIT Checkout') {
             steps{
-                  git 'https://github.com/OpqTech/java-example'
+                  git 'https://github.com/OpqTech/java-example1'
 			}
         }
 
