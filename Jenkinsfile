@@ -1,23 +1,29 @@
-pipeline{
-	agent { label 'slave-2'}
-	stages{
-        stage('Build stage') {
-            steps {
-                echo 'This is a build stage'
-				sh 'sleep 5'
+
+pipeline {
+    agent {label 'slave1'}
+    stages {
+        stage('GIT Checkout') {
+            steps{
+                  git 'https://github.com/OpqTech/java-example'
 			}
-		}
-        stage('Push stage') {
+        }
+
+        stage('Build') {
             steps {
-                echo 'This is push stage'
-                sh 'sleep 5'
-			}
-		}
-        stage('Deploy stage') {
+                    sh 'mvn clean install' 
+            }
+        }
+
+        stage('Deploy') {
             steps {
-                echo 'This is deploy stage'
-                sh 'sleep 5'
-			}
+				sh 'sudo cp /home/ubuntu/jenkins/workspace/pipelineproject/target/*.war /home/ubuntu/opt/tomcat/apache-tomcat-9.0.68/webapps'
+
+            }
+        }
+		stage (tomcat) {
+		  steps {
+		       cd /bin/./startup.sh
+		  }
 		}
 	}
-}	
+}
