@@ -19,13 +19,20 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-
+stage('SonarQube Analysis') {
+            steps {
+                // Execute SonarQube scanner
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        
         stage('Deploy') {
             steps {
                 // Use Maven tool to run SonarQube analysis
                // withMaven(maven: 'MavenInstallation') 
                 {
-                    sh 'mvn sonar:sonar'
+                  echo  "sh mvn sonar:sonar"
                 }
             }
         }
