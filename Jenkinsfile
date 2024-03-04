@@ -16,14 +16,12 @@ pipeline {
 
         stage('Deploy') {
             steps {
-				sh 'sudo cp /home/ubuntu/jenkins/workspace/pipelineproject/target/*.war /home/ubuntu/opt/tomcat/apache-tomcat-9.0.68/webapps'
 
-            }
+	      // script {
+                 //   def scannerHome = tool 'Sonar-qube1'
+                   // withSonarQubeEnv('Sonar_qube') {
+                        sh "mvn sonar:sonar""}
+echo "clean"}
         }
-		stage (tomcat) {
-		  steps {
-		       cd /bin/./startup.sh
-		  }
-		}
-	}
+		}}
 }
