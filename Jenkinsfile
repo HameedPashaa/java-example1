@@ -20,7 +20,7 @@ pipeline {
 	      // script {
                  //   def scannerHome = tool 'Sonar-qube1'
                    // withSonarQubeEnv('Sonar_qube') {
-                        sh "mvn sonar:sonar""}
+                        sh "mvn sonar:sonar"}
 echo "clean"}
         }
 		}}
