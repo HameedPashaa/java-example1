@@ -1,22 +1,31 @@
 pipeline {
     agent any
+
+    tools {
+        // Define the Maven tool using the name configured in Jenkins
+        maven 'MavenInstallation'
+    }
+
     stages {
         stage('GIT Checkout') {
-            steps{
+            steps {
                 git 'https://github.com/OpqTech/java-example1'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean install' 
+                // Use Maven tool to run Maven commands
+                sh 'mvn clean install'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh "mvn sonar:sonar"
-                echo "clean"
+                // Use Maven tool to run SonarQube analysis
+                withMaven(maven: 'MavenInstallation') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
     }
