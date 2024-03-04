@@ -23,7 +23,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Use Maven tool to run SonarQube analysis
-                withMaven(maven: 'MavenInstallation') {
+               // withMaven(maven: 'MavenInstallation') 
+                {
                     sh 'mvn sonar:sonar'
                 }
             }
