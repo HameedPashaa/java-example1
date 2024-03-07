@@ -1,17 +1,17 @@
 pipeline {
     agent any
 
-    tools {
+    //tools {
         // Define the Maven tool using the name configured in Jenkins
-        maven 'MavenInstallation'
-    }
+      //  maven 'MavenInstallation'
+   // }
 
     stages {
         stage('GIT Checkout') {
             steps {
                 git 'https://github.com/OpqTech/java-example1'
             }
-        }
+        }}
 
         stage('Build') {
             steps {
